@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { products } from "@/lib/mock-data";
 import { useCart } from "@/context/cart-context";
-import { Star, ShoppingBag, ArrowLeft, Truck, RotateCcw, Shield } from "lucide-react";
+import { Star, ShoppingBag, ArrowLeft, Truck, RotateCcw, Shield, Plus, Minus } from "lucide-react";
 import { use } from "react";
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
@@ -18,6 +18,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   if (!product) notFound();
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
 
@@ -28,7 +29,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       price: product.price,
       image: product.images[0],
       color: selectedColor,
-    });
+    }, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -112,6 +113,31 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               </div>
             </div>
           )}
+
+          {/* Quantity selector */}
+          <div>
+            <p className="text-sm font-medium text-stone-900 mb-3">Quantity</p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center border border-stone-200 rounded-full">
+                <button
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  className="w-10 h-10 flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
+                >
+                  <Minus size={14} />
+                </button>
+                <span className="w-8 text-center text-sm font-medium">{quantity}</span>
+                <button
+                  onClick={() => setQuantity((q) => q + 1)}
+                  className="w-10 h-10 flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
+                >
+                  <Plus size={14} />
+                </button>
+              </div>
+              {quantity > 1 && (
+                <span className="text-sm text-stone-400">= ₹{product.price * quantity}</span>
+              )}
+            </div>
+          </div>
 
           <Button
             onClick={handleAddToCart}

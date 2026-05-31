@@ -10,46 +10,52 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-stone-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1800&auto=format&fit=crop&q=80"
+          alt="Writing desk with stationery"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/85 via-stone-900/60 to-transparent" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium tracking-widest text-stone-400 uppercase mb-4">
+            <p className="text-sm font-medium tracking-widest text-amber-300 uppercase mb-4">
               Premium Stationery — Made for India
             </p>
-            <h1 className="text-5xl md:text-7xl font-bold text-stone-900 leading-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
               Write your<br />
-              <span className="italic font-light">best story.</span>
+              <span className="italic font-light text-amber-200">best story.</span>
             </h1>
-            <p className="text-lg text-stone-500 mb-10 max-w-lg">
+            <p className="text-lg text-stone-200 mb-10 max-w-lg">
               Beautifully designed notebooks, pens, and planners for students and professionals who believe quality matters.
             </p>
-            <div className="flex gap-4">
-              <Link href="/shop" className={cn(buttonVariants({ size: "lg" }), "bg-stone-900 hover:bg-stone-700 text-white rounded-full px-8")}>
+            <div className="flex gap-4 flex-wrap">
+              <Link href="/shop" className={cn(buttonVariants({ size: "lg" }), "bg-amber-400 hover:bg-amber-300 text-stone-900 rounded-full px-8 font-semibold")}>
                 Shop Now
               </Link>
-              <Link href="/shop?category=gifting" className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "text-stone-600 rounded-full")}>
+              <Link href="/shop?category=gifting" className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "text-white border border-white/40 hover:bg-white/10 rounded-full")}>
                 View Gift Sets <ArrowRight size={16} className="ml-1" />
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:block">
-          <div className="h-full bg-stone-200 relative">
-            <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop"
-              alt="Beautiful stationery"
-              fill
-              className="object-cover opacity-80"
-              priority
-            />
-          </div>
-        </div>
       </section>
+
+      {/* Promo strip */}
+      <div className="bg-amber-400 text-stone-900 text-center py-3 px-4 text-sm font-medium tracking-wide">
+        Free shipping on orders above ₹999 &nbsp;·&nbsp; New arrivals every week &nbsp;·&nbsp; Handcrafted in India
+      </div>
 
       {/* Categories */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <h2 className="text-2xl font-bold text-stone-900 mb-8">Shop by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {categories.map((cat) => (
             <Link
               key={cat.id}
@@ -79,21 +85,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Banner */}
+      {/* Mid banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-stone-900 rounded-2xl p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <p className="text-stone-400 text-sm uppercase tracking-widest mb-3">Free shipping above ₹999</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Give the gift of<br />beautiful stationery.
-            </h2>
-            <p className="text-stone-400 max-w-sm">
-              Every Klookins gift set comes wrapped in our signature packaging — ready to gift.
-            </p>
+        <div className="relative rounded-2xl overflow-hidden min-h-[360px] flex items-center">
+          <Image
+            src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=1400&auto=format&fit=crop&q=80"
+            alt="Gift stationery set"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-stone-900/20" />
+          <div className="relative z-10 p-12 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 w-full">
+            <div>
+              <p className="text-amber-300 text-sm uppercase tracking-widest mb-3">Free shipping above ₹999</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Give the gift of<br />beautiful stationery.
+              </h2>
+              <p className="text-stone-300 max-w-sm">
+                Every Klookins gift set comes wrapped in our signature packaging — ready to gift.
+              </p>
+            </div>
+            <Link href="/shop?category=gifting" className={cn(buttonVariants({ size: "lg" }), "bg-amber-400 hover:bg-amber-300 text-stone-900 font-semibold rounded-full px-8 shrink-0")}>
+              Shop Gift Sets
+            </Link>
           </div>
-          <Link href="/shop?category=gifting" className={cn(buttonVariants({ size: "lg" }), "bg-white text-stone-900 hover:bg-stone-100 rounded-full px-8 shrink-0")}>
-            Shop Gift Sets
-          </Link>
         </div>
       </section>
     </div>
