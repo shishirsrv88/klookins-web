@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import ProductCard from "@/components/product-card";
 import { featuredProducts, categories } from "@/lib/mock-data";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -23,12 +24,12 @@ export default function Home() {
               Beautifully designed notebooks, pens, and planners for students and professionals who believe quality matters.
             </p>
             <div className="flex gap-4">
-              <Button asChild size="lg" className="bg-stone-900 hover:bg-stone-700 text-white rounded-full px-8">
-                <Link href="/shop">Shop Now</Link>
-              </Button>
-              <Button asChild variant="ghost" size="lg" className="text-stone-600 rounded-full">
-                <Link href="/shop?category=gifting">View Gift Sets <ArrowRight size={16} className="ml-1" /></Link>
-              </Button>
+              <Link href="/shop" className={cn(buttonVariants({ size: "lg" }), "bg-stone-900 hover:bg-stone-700 text-white rounded-full px-8")}>
+                Shop Now
+              </Link>
+              <Link href="/shop?category=gifting" className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "text-stone-600 rounded-full")}>
+                View Gift Sets <ArrowRight size={16} className="ml-1" />
+              </Link>
             </div>
           </div>
         </div>
@@ -90,9 +91,9 @@ export default function Home() {
               Every Klookins gift set comes wrapped in our signature packaging — ready to gift.
             </p>
           </div>
-          <Button asChild size="lg" className="bg-white text-stone-900 hover:bg-stone-100 rounded-full px-8 shrink-0">
-            <Link href="/shop?category=gifting">Shop Gift Sets</Link>
-          </Button>
+          <Link href="/shop?category=gifting" className={cn(buttonVariants({ size: "lg" }), "bg-white text-stone-900 hover:bg-stone-100 rounded-full px-8 shrink-0")}>
+            Shop Gift Sets
+          </Link>
         </div>
       </section>
     </div>

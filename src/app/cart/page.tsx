@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useCart } from "@/context/cart-context";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 
@@ -15,9 +16,9 @@ export default function CartPage() {
         <ShoppingBag size={48} className="mx-auto text-stone-300 mb-4" />
         <h1 className="text-2xl font-bold text-stone-900 mb-2">Your cart is empty</h1>
         <p className="text-stone-500 mb-8">Add something beautiful to get started.</p>
-        <Button asChild className="bg-stone-900 text-white hover:bg-stone-700 rounded-full px-8">
-          <Link href="/shop">Continue Shopping</Link>
-        </Button>
+        <Link href="/shop" className={cn(buttonVariants(), "bg-stone-900 text-white hover:bg-stone-700 rounded-full px-8")}>
+          Continue Shopping
+        </Link>
       </div>
     );
   }
